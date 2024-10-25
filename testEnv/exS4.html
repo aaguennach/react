@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.25.8/babel.min.js" integrity="sha512-Ev4MGAwDUabula0G4904zmM3r0YHBc7JA3B6jJQutxY3VPbRqrBE+l1C9qhJuAhn3lDha91rvSHaAW6wAXQkbA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    </head>
+        
+<body>
+    
+    <div id="root"></div>
+
+    <script type="text/babel">
+    
+        class ListClass extends React.Component{
+            constructor(props){
+                super(props)
+            }
+
+            render() {
+                return(
+                    <li key={this.props.key}> {this.props.e} </li>
+                )
+            }
+        }
+
+        const table = ["Element 11", "Element 22", "Element 33"]
+
+
+        const LiFunc = () =>{
+            return <ul>
+                { 
+                    table.map((e,i)=>{
+                       return <ListClass e={e} key= {i}  /> 
+                    })
+                }
+                </ul>
+        }
+
+        ReactDOM.render(<LiFunc/>, document.getElementById('root'))
+
+    
+    
+    </script>
+</body>
+</html>

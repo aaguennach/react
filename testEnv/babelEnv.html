@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.25.8/babel.min.js" integrity="sha512-Ev4MGAwDUabula0G4904zmM3r0YHBc7JA3B6jJQutxY3VPbRqrBE+l1C9qhJuAhn3lDha91rvSHaAW6wAXQkbA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    </head>
+        
+<body>
+
+    <div id="root"></div>
+    <div id="rootTwo"></div>
+    <div id="rootThree"></div>
+    <div id="rootFour"></div>
+
+    <script type="text/babel">
+
+        //first way
+        let styleObj = "square"
+        let style = {margin:"20px", color: "red", listStyleType: styleObj}
+        let list = <ul style={style}>
+            <li>Element 01</li>
+            <li>Element 02</li>
+            <li>Element 03</li>
+        
+        </ul>
+
+        ReactDOM.render(list,document.getElementById("root"))
+
+        //second way
+        let styleTwo = {margin:"20px", color: "blue", listStyleType: styleObj}
+        const table = ["Element 11", "Element 22", "Element 33"]
+        let listTwo = <ul style={styleTwo}>
+           {
+            table.map((element,index)=>{
+                return <li key={index}> {element} </li>
+            })
+           }
+        
+        </ul>
+
+        ReactDOM.render(listTwo,document.getElementById("rootTwo"))
+
+        //third way
+
+        let styleThree = {margin:"20px", color: "blue", listStyleType: styleObj}
+        const tableThree = ["Element 11", "Element 22", "Element 33"]
+        const ListThree = (props)=>{
+           return  <ul style={styleThree}>
+                        <li> {props.color} </li>
+                        {
+                            tableThree.map((element,index)=>{
+                                return <li key={index}> {element} </li>
+                            })
+                        }
+                   </ul>
+        }
+
+        ReactDOM.render(<ListThree color="red"/>,document.getElementById("rootThree"))
+
+
+        //test way 
+
+        let ListComp = (props) =>{
+            return <li>{props.el} </li>
+        }
+
+        let UlComp = (props) =>{
+            return <ul style={{color : props.color}}> 
+                <ListComp el="data1"/>
+                <ListComp el="data2"/>
+                <ListComp el="data3"/>
+
+                </ul>
+        }
+
+
+        // ReactDOM.render(<UlComp color="red"/>,document.getElementById("rootFour"))
+
+
+        
+
+
+        class UlCompClass extends React.Component {
+            constructor(props){
+                super(props)
+            }
+
+            render(){
+                return(
+                    
+                    <ul>
+                        <li> test </li> 
+                        <li> {this.props.color} </li> 
+                    </ul>
+                ) 
+            }
+
+        }
+
+        ReactDOM.render(<UlCompClass color="red"/>,document.getElementById("rootFour"))
+
+
+    </script>
+</body>
+</html>

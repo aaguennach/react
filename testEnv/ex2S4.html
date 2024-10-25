@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.25.8/babel.min.js" integrity="sha512-Ev4MGAwDUabula0G4904zmM3r0YHBc7JA3B6jJQutxY3VPbRqrBE+l1C9qhJuAhn3lDha91rvSHaAW6wAXQkbA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">    
+        <title>Document</title>
+    </head>    
+    
+</head>
+<body class="d-flex justify-content-center align-items-center bg-secondary" style="height: 100vh;">
+    <div id="root"></div>
+    
+    <script type="text/babel">
+      const products = [
+    {
+        id: 1,
+        title: 'PC Portable Gamer HP VICTUS',
+        price: '7490 DH',
+        thumbnail: 'assets/1.jpg'
+    },
+    {
+        id: 2,
+        title: 'PC Portable Gamer HP VICTUS',
+        price: '2190 DH',
+        thumbnail: 'assets/2.jpg'
+    },
+    {
+        id: 3,
+        title: 'Pc Portable Chromebook Acer',
+        price: '3640 DH',
+        thumbnail: 'assets/3.jpg'
+    },
+    {
+        id: 4,
+        title: 'PC Portable - HUAWEI',
+        price: '1270 DH',
+        thumbnail: 'assets/4.jpg'
+    },
+];
+
+    class Product extends React.Component {
+        render() {
+            return (
+                <div className="card p-2" style={{ width: '18rem' }}>
+                    <img src={this.props.obj.thumbnail} className="card-img-top" alt={this.props.obj.title} />
+                    <div className="card-body">
+                        <h5 className="card-title">{this.props.obj.title}</h5>
+                        <p className="card-text">{this.props.obj.price}</p>
+                        <a href="#" className="btn btn-primary" style={{ marginTop: this.props.obj.price === '1270 DH' ? '25px' : '0' }}>Ajouter au Panier </a>
+                    </div>
+                </div>
+            );
+        }
+    }
+
+    class ListPrdt extends React.Component {
+        constructor(props) {
+            super(props);
+            this.list = products; 
+        }
+
+        render() {
+            return (
+                <div className="d-flex" style={{gap:"20px"}}>
+                    {this.list.map((e) => {
+                        return (
+                            <Product obj = {e} />
+                        );
+                    })}
+                </div>
+            );
+        }
+    }
+
+ReactDOM.render(<ListPrdt />, document.getElementById('root'));
+
+    
+
+
+    </script>
+</body>
+</html>
